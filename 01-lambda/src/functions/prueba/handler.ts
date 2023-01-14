@@ -1,7 +1,10 @@
-const pruebaHandler = () => {
+const pruebaHandler = async (event: any = {}): Promise<any> => {
+  const { body } = event;
+  const username = JSON.parse(body).username;
+
   return {
     statusCode: 200,
-    body: "Hello from Lambda!",
+    body: username,
   };
 };
 
