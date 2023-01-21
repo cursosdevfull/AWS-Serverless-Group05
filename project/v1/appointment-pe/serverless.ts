@@ -2,7 +2,7 @@ import processor from '@functions/processor';
 
 import type { AWS } from "@serverless/typescript";
 const serverlessConfiguration: AWS = {
-  service: "cursosdev-appointment-pe",
+  service: "cursosdev-appointment-v1-pe",
   frameworkVersion: "3",
   plugins: ["serverless-esbuild"],
   provider: {

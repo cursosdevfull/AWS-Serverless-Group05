@@ -2,7 +2,7 @@ import send from '@functions/send';
 
 import type { AWS } from "@serverless/typescript";
 const serverlessConfiguration: AWS = {
-  service: "cursosdev-appointment",
+  service: "cursosdev-appointment-v1",
   frameworkVersion: "3",
   plugins: ["serverless-esbuild"],
   provider: {
@@ -23,9 +23,9 @@ const serverlessConfiguration: AWS = {
             Effect: "Allow",
             Action: ["lambda:InvokeFunction"],
             Resource: [
-              "arn:aws:lambda:*:*:function:cursosdev-appointment-co-dev-processor",
-              "arn:aws:lambda:*:*:function:cursosdev-appointment-mx-dev-processor",
-              "arn:aws:lambda:*:*:function:cursosdev-appointment-pe-dev-processor",
+              "arn:aws:lambda:*:*:function:cursosdev-appointment-v1-co-dev-processor",
+              "arn:aws:lambda:*:*:function:cursosdev-appointment-v1-mx-dev-processor",
+              "arn:aws:lambda:*:*:function:cursosdev-appointment-v1-pe-dev-processor",
             ],
           },
         ],

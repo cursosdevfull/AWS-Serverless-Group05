@@ -23,13 +23,16 @@ const sendMessage = async (information: Message): Promise<any> => {
   let lambdaFunctionNameDestination = "";
   switch (isoCountry) {
     case ISO_COUNTRY.COLOMBIA:
-      lambdaFunctionNameDestination = "cursosdev-appointment-co-dev-processor";
+      lambdaFunctionNameDestination =
+        "cursosdev-appointment-v1-co-dev-processor";
       break;
     case ISO_COUNTRY.MEXICO:
-      lambdaFunctionNameDestination = "cursosdev-appointment-mx-dev-processor";
+      lambdaFunctionNameDestination =
+        "cursosdev-appointment-v1-mx-dev-processor";
       break;
     case ISO_COUNTRY.PERU:
-      lambdaFunctionNameDestination = "cursosdev-appointment-pe-dev-processor";
+      lambdaFunctionNameDestination =
+        "cursosdev-appointment-v1-pe-dev-processor";
       break;
   }
 
@@ -50,7 +53,7 @@ const appointmentHandler = async (event: any = {}): Promise<any> => {
 
   return {
     statusCode: 200,
-    body: `Message send: ${JSON.stringify(result)}`,
+    body: `Message send: ${JSON.stringify(result.Payload)}`,
   };
 };
 
