@@ -4,10 +4,7 @@ export default {
   handler: `${handlerPath(__dirname)}/handler.receive`,
   events: [
     {
-      sns: {
-        topicName: "SNSTopic04",
-        arn: "${cf:origin04-dev.SNSTopicArn}",
-      },
+      sqs: { arn: "arn:aws:sqs:us-east-1:282865065290:SQSAWS05" },
     },
   ],
 };
