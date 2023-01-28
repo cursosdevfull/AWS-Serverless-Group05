@@ -1,4 +1,6 @@
 const receive = async (event) => {
+  //throw new Error("An error occurred");
+
   event.Records.forEach((record) => {
     console.log(JSON.parse(record.body));
   });

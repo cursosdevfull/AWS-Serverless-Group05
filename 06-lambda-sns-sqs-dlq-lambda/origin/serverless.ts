@@ -3,7 +3,7 @@ import send from '@functions/send';
 import type { AWS } from "@serverless/typescript";
 
 const serverlessConfiguration: AWS = {
-  service: "origin05",
+  service: "origin06",
   frameworkVersion: "3",
   plugins: ["serverless-esbuild"],
   provider: {
@@ -51,6 +51,20 @@ const serverlessConfiguration: AWS = {
         Type: "AWS::SQS::Queue",
         Properties: {
           QueueName: "SQSAWS06",
+          VisibilityTimeout: 20,
+          MessageRetentionPeriod: 86400,
+          RedrivePolicy: {
+            deadLetterTargetArn: { "Fn::GetAtt": ["SQSQueueDLQ", "Arn"] },
+            maxReceiveCount: 1,
+          },
+        },
+      },
+      SQSQueueDLQ: {
+        Type: "AWS::SQS::Queue",
+        Properties: {
+          QueueName: "SQSAWSDLQ",
+          VisibilityTimeout: 20,
+          MessageRetentionPeriod: 86400,
         },
       },
       SNSTopic06: {
