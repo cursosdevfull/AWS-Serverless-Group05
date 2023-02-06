@@ -1,5 +1,5 @@
 {
-  "name": "lambda-s3",
+  "name": "lambda-ses",
   "version": "1.0.0",
   "description": "Serverless aws-nodejs-typescript template",
   "main": "serverless.ts",
@@ -12,8 +12,8 @@
   "dependencies": {
     "@middy/core": "^3.4.0",
     "@middy/http-json-body-parser": "^3.4.0",
-    "aws-sdk": "^2.1304.0",
-    "uuid": "^9.0.0"
+    "aws-sdk": "^2.1309.0",
+    "velocityjs": "^2.0.6"
   },
   "devDependencies": {
     "@serverless/typescript": "^3.0.0",

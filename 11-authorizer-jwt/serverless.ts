@@ -1,14 +1,18 @@
-import readcsv from "@functions/readcsv";
+import hello from "@functions/hello";
 
 import type { AWS } from "@serverless/typescript";
 
 const serverlessConfiguration: AWS = {
-  service: "lambda-s3",
+  service: "authorizer-jwt",
   frameworkVersion: "3",
   plugins: ["serverless-esbuild"],
   provider: {
     name: "aws",
     runtime: "nodejs14.x",
+    apiGateway: {
+      minimumCompressionSize: 1024,
+      shouldStartNameWithService: true,
+    },
     environment: {
       AWS_NODEJS_CONNECTION_REUSE_ENABLED: "1",
       NODE_OPTIONS: "--enable-source-maps --stack-trace-limit=1000",
@@ -18,7 +22,7 @@ const serverlessConfiguration: AWS = {
     },
   },
   // import the function via paths
-  functions: { readcsv },
+  functions: { hello },
   package: { individually: true },
   custom: {
     esbuild: {
@@ -34,20 +38,20 @@ const serverlessConfiguration: AWS = {
   },
   resources: {
     Resources: {
-      MedicSchedule: {
+      UserTable: {
         Type: "AWS::DynamoDB::Table",
         Properties: {
-          TableName: "MedicSchedule",
+          TableName: "UserTable",
           BillingMode: "PAY_PER_REQUEST",
           AttributeDefinitions: [
             {
-              AttributeName: "id",
+              AttributeName: "email",
               AttributeType: "S",
             },
           ],
           KeySchema: [
             {
-              AttributeName: "id",
+              AttributeName: "email",
               KeyType: "HASH",
             },
           ],

@@ -1,1 +1,1 @@
-export { default as read } from "./read";
+export { default as readcsv } from "./readcsv";
