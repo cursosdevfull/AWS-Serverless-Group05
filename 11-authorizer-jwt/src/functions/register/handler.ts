@@ -1,14 +1,24 @@
-import { UserService } from "./UserService";
+import { BcryptService } from "../services/BcryptService";
+import { UserService } from "../services/UserService";
 
 const register = async (event) => {
-  const { name, email, password } = event.body;
+  let { name, email, password } = JSON.parse(event.body);
 
   const user = await UserService.getUser(email);
 
   if (!user) {
-    console.log("User not found. User can be created.");
+    password = await BcryptService.hash(password);
+    await UserService.createUser(email, name, password);
+
+    return {
+      statusCode: 200,
+      body: "User registered successfully.",
+    };
   } else {
-    console.log("User found. User cannot be created.");
+    return {
+      statusCode: 400,
+      body: "User already exists.",
+    };
   }
 };
 

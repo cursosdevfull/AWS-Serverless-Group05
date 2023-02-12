@@ -1,4 +1,5 @@
-import hello from "@functions/hello";
+import { authorizer, consumer, login, register } from "./src/functions";
+import newAccessToken from "./src/functions/new-token";
 
 import type { AWS } from "@serverless/typescript";
 
@@ -16,13 +17,14 @@ const serverlessConfiguration: AWS = {
     environment: {
       AWS_NODEJS_CONNECTION_REUSE_ENABLED: "1",
       NODE_OPTIONS: "--enable-source-maps --stack-trace-limit=1000",
+      JWT_SECRET: "abdd2ed8-5f94-49b8-bd02-fe07978b1d76",
     },
     iam: {
       role: "arn:aws:iam::282865065290:role/ROLE_FOR_LAMBDA_IN_COURSE",
     },
   },
   // import the function via paths
-  functions: { hello },
+  functions: { consumer, register, login, authorizer, newAccessToken },
   package: { individually: true },
   custom: {
     esbuild: {

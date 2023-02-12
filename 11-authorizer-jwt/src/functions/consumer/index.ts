@@ -7,6 +7,8 @@ export default {
       http: {
         method: "post",
         path: "/consumer",
+        integration: "lambda",
+        authorizer: "authorizer",
       },
     },
   ],

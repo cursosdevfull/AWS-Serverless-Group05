@@ -1,12 +1,12 @@
 import { handlerPath } from "@libs/handler-resolver";
 
 export default {
-  handler: `${handlerPath(__dirname)}/handler.register`,
+  handler: `${handlerPath(__dirname)}/handler.login`,
   events: [
     {
       http: {
         method: "post",
-        path: "/register",
+        path: "/login",
       },
     },
   ],
